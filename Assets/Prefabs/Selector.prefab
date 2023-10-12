@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9167558658974686903
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3858162409778664763}
+  - component: {fileID: 1949999355674887386}
+  - component: {fileID: 6891214169342998252}
+  - component: {fileID: 6649687021073911502}
+  m_Layer: 0
+  m_Name: Selector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3858162409778664763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167558658974686903}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1949999355674887386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167558658974686903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 647a8d2286f546b498feeaef9281d10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  protocol: 1
+  port: 8999
+  x: 0
+  y: 0
+  touching: 0
+--- !u!114 &6891214169342998252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167558658974686903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a8edaa3b8f0b6468ccbeadb2dc8b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socketManager: {fileID: 1949999355674887386}
+  targetManager: {fileID: 6649687021073911502}
+  testEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipe:
+    m_PersistentCalls:
+      m_Calls: []
+  onSwipeEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onCorrelationTime:
+    m_PersistentCalls:
+      m_Calls: []
+  xThreshold: 0.8
+  yThreshold: 0.8
+  avgThreshold: -1
+  rememberX: 1
+  rememberY: 1
+  rememberAVG: 0
+  selectionTime: 0.5
+--- !u!114 &6649687021073911502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9167558658974686903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9346962be85fd4aa6ee2ec9c4eb9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionManager: {fileID: 6891214169342998252}
+  targetPrefab: {fileID: 2505943186992586804, guid: 79b782c53fa151e469f98a2f8eb9c704, type: 3}
+  selectables: []
+  angleOffset: -1
+  targetSpeed: 1
+  speedOffset: 0
+  speedMultiplier: 1
+  selectionDisplayTime: 2
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  hoverColor: {r: 0, g: 0, b: 1, a: 1}
+  selectedColor: {r: 0, g: 1, b: 0, a: 1}
+  currentHoverId: -1
+  latestSelectId: -1
