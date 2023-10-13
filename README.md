@@ -1,7 +1,9 @@
 # XR Orbit Selection
 Selection of objects in XR by swiping, imitating orbiting circles. Unity project (swiping done in wearOS Android app).
 
-This is a project developed for Oculus, to be used with an accompanying [wearOS app](https://github.com/SRSAS/OrbitSelectionWearApp). In it, objects are displayed in line, each with a target above it. The target is composed of two circles, one big and hollow, the other small and filled and orbiting the circumference of the large one. Each of the objects is supposed to be differentiated by its target having either a different orbiting speed or position.
+This is a project developed for Oculus, to be used with an accompanying [wearOS app](https://github.com/SRSAS/OrbitSelectionWearApp).
+
+Objects are displayed in line, each with a target above it. The target is composed of two circles, one big and hollow, the other small and filled and orbiting the circumference of the large one. Each of the objects is supposed to be differentiated by its target having either a different orbiting speed or position.
 
 To select an object, the user, wearing the headset and a smartwatch running the accompanying wearOS app, must perform a swipe on the smartwatch that matches the orbit of the target of the object that they wish to select. While the user keeps performing the swipe, the object that most closely matches their swipe will be highlighted. If it isn't the one the user intended, they can keep performing the swipe to try to match with the correct object. Once the user lifts their finger from the smartwatch, the currently highlighted object will be selected and be highlighted with a different colour.
 
@@ -63,6 +65,36 @@ On the wearOS app input the headset's _IPV4_ and click on **Connect**. Check if 
 When it does, you can start sending user input.
 
 
-## Adding targets and changing parameters
+## Adding and customizing targets
+### Adding targets
+To add a target, simply add whatever object you want to be selectable to the scene as a child object of the **Selector** object. You can also create new game objects directly as child objects of the **Selector** game object.
+All children of the **Selector** object will be spaced equally apart along a line, will have a target above them, and will be selectable.
+### Target customization
+It is possible to alter the speeds and positions of the targets' orbits. This can be done for all targets as a group, or for each target individually.
+#### Customizing targets individually
+To change a single target's speed and position, while the scene is running, on the **Hierarchy Panel** select the object you want to change, on the **Inspector Panel** expand the **Selectable** script and customize the **Angular Speed** and **Current Angle** fields.
+#### Customizing targets as a group
+To change the targets' speeds and positions as a group,  on the **Hierarchy Panel** select the **Selector** object, on the **Inspector Panel** expand the **Target Manager** script and customize the **Angular Offset**, **Target Speed** **Speed Offset**, and **Speed Multiplier** fields.
+
+As a group, targets are managed by the Target Manager which holds all targets in a list. Thus, each target has their **index** in that list.
+
+In the group, each target's initial angle is calculated as:
+
+$target_{initial Angle} = target_{index}\times Angle Offset$
+
+And each target's speed is calculated as:[^3]
+
+$target_{speed} = (Target Speed + Speed Offset \times target_{index}) \times Speed Multiplier^{target_{index}}$
+
+**_Field default values:_**
+|Field               | Default Value             |
+|--------------------|---------------------------|
+|**Angular Offset**  |-1 == ($2\pi/target Count$)|
+|**Target Speed**    |1|
+|**Speed Offset**    |0                          |
+|**Speed Multiplier**|1                          |
+
+
 [^1]:To open the project, open Unity Hub, click on **Open**, then select the repository directory
 [^2]:For troubleshooting connecting the Meta Quest Pro to your computer, see the [official Meta documentation](https://developer.oculus.com/documentation/unity/unity-env-device-setup/)
+[^3]:Although this may seem overly complicated, this formula allows for easy differentiation of targets through the parameters. For example, by setting the Speed Multiplier to -1, half the target will orbit in one direction and the other half will orbit the other
