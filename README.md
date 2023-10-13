@@ -90,10 +90,16 @@ $target_{speed} = (Target Speed + Speed Offset \times target_{index}) \times Spe
 |Field               | Default Value             |
 |--------------------|---------------------------|
 |**Angular Offset**  |-1 == ($2\pi/target Count$)|
-|**Target Speed**    |1|
+|**Target Speed**    |1                          |
 |**Speed Offset**    |0                          |
 |**Speed Multiplier**|1                          |
 
+## Getting test data
+To get data from the user attempts to select objects, on the **Project Panel**, go to **Assets** > **Scripts**, and add the **TestManager** script to the **Selector** object on the **Hierarchy Panel**. Add a **Text - TextMeshPro** object to the scene (place it wherever you want on the screen), and place it in the **text** field of the **TestManager** script.
+
+A random object will be picked and the text will tell the user (by the object's name) to select it. After the user's swipe, a report on the swipe will be printed to the console. This report includes information on swipe time, number of targets hovered over, etc.
+
+This report is only printed to the console. To alter the report, or to send it to any other output stream, changes to the TestManager script must be made.
 
 [^1]:To open the project, open Unity Hub, click on **Open**, then select the repository directory
 [^2]:For troubleshooting connecting the Meta Quest Pro to your computer, see the [official Meta documentation](https://developer.oculus.com/documentation/unity/unity-env-device-setup/)
