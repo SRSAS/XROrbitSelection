@@ -26,6 +26,8 @@ Project supervised by Professor [Augusto Esteves](http://web.tecnico.ulisboa.pt/
 All rights belong to the HCI Lab.
 
 ## Project Structure
+### SDKs
+This project uses Meta's [Movement SDK for Unity](https://developer.oculus.com/documentation/unity/move-overview/).
 ### Scripts
 |Script|Description|
 |----|-----------|
