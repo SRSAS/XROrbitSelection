@@ -27,14 +27,23 @@ All rights belong to the HCI Lab.
 
 ## Project Structure
 ### Scripts
-|Name|Description|
+|Script|Description|
 |----|-----------|
 |**BillBoarding**|Makes this gameObject always face towards the camera.|
 |**Selectable**|Holding this script is what makes an object selectable. It adds the target to the object on _Start()_. On _Update()_ it controls the **Target**'s orbit, and also displays the object's selection state. The **Selectable** object is also responsible for calculation of the correlation of its **Target**'s coordinates with the user swipe. A **Selectable** object listens to _UnityEvents_ from the **SelectionManager** for when to take in data from the user, and when to calculate correlations. This script also provides an interface for being hovered and selected.|
 |**TargetManager**    |This script is an aggregator of **Selectable** objects, and also serves as a connection between them and the **SelectionManager**. On _Start()_ turns all of the object's children into **Selectable** objects, displays them in a line, sets their positions and speeds as explained [further](https://github.com/SRSAS/XROrbitSelection/edit/main/README.md#customizing-targets-as-a-group), and makes them listen for the **SelectionManager** _UnityEvents_. On _Update()_ checks if there are any new children and adds them as **Selectable** objects, like the ones on _Start()_. And, if any of the [target motion parameters](https://github.com/SRSAS/XROrbitSelection/edit/main/README.md#customizing-targets-as-a-group) have changed, updates the targets' motions. The **TargetManager** also provides an interface to hover the target with the highest correlation, once these have been calculated, or to select a target, once a user has stopped swiping.|
-|**SelectionManager**|This script controls the selection parameters (time and threshold). It is the connection between the **targetManager** and the **SocketManagerThreading**. It takes the input from the user, from the **SocketManagerThreading** object, and through a _UnityEvent_ passes the user input coordinates to the **Selectable** objects. When it is time to calculate the correlation with the **Targets**, it invokes another _UnityEvent_, and tells the **TargetManager** to hover the **Selectable** with the highest correlation. When the user stops their swipe, it tells the **TargetManager** to select the last hovered **Selectable**. Also sends information to **TestManager**|
+|**SelectionManager**|This script controls the selection parameters (time and threshold). It is the connection between the **targetManager** and the **SocketManagerThreading**. It takes the input from the user, from the **SocketManagerThreading** object, and through a _UnityEvent_ passes the user input coordinates to the **Selectable** objects. When it is time to calculate the correlation with the **Targets**, it invokes another _UnityEvent_, and tells the **TargetManager** to hover the **Selectable** with the highest correlation. When the user stops their swipe, it tells the **TargetManager** to select the last hovered **Selectable**. Also sends information to **TestManager**.|
 |**SocketManagerThreading**| C# native socket and threading used to receive user input. Can use either UDP or TCP by changing the protocol field **_before_** running. **_UDP is recommended_** for a faster and simpler connection.|
 |**TestManager**|Connects to **TargetManager** and **SelectionManager**, and listens to **SelectionManager** _UnityEvents_ to gather information about the user's selection process, and prints a report with that information to the console.|
+### Prefabs
+|Name|Scripts|Description|
+|----|-------|-----------|
+|**Target**|_BillBoarding_|Large hollow circle, with smaller filled circle that orbits the larger circle's cirumfrence. Always faces the camera. It's what the user must imitate with their swipe.|
+|**Selector**|_SocketManagerThreading_, _SelectionManager_, _TargetManager_| This object manages the whole selection process. For the scripts to function properly, they should be placed in the same gameObject. This is the object that will also hold all of the **Selectable** objects.|
+### SampleScene
+- OVRCameraRig:
+    - This is the camera for the Meta headset. It is a prefab taken directly from the Meta movement SDK. For more information, please refer to Meta's [documentation](https://developer.oculus.com/documentation/unity/unity-tutorial-hello-vr/).
+- Selector.
 ## Cloning and Setup
 
 1.  Clone the repository;
