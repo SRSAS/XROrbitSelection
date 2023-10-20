@@ -38,6 +38,9 @@ public class Selectable : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (targetManager == null)
+            targetManager = FindObjectOfType<TargetManager>();
+
         // Check if this object already has a target, if not, add one
         hasTarget = CheckChildrenForTarget(targetPrefab);
         if (!hasTarget)
@@ -49,9 +52,6 @@ public class Selectable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (targetManager == null)
-            targetManager = FindObjectOfType<TargetManager>();
-
         // Make the target spin
         OrbitTarget(angularSpeed, circleRad);
 

@@ -103,6 +103,9 @@ public class TargetManager : MonoBehaviour
         }
     }
 
+    /**
+     * Set the angle and speed of every target
+     */
     private void SetTargetMotions(float angOffset, float tarSpeed, float speOffset, float speMultiplier)
     {
         for (int i = 0; i < selectables.Count; i++)
@@ -112,9 +115,11 @@ public class TargetManager : MonoBehaviour
         }
     }
 
-    /* For all children of the target manager, if they aren't a selectable object, turn them into one.
-    Then, place them in line.
-    Finally, make them listen to the selection manager */
+    /**
+     * For all children of the target manager, if they aren't a selectable object, turn them into one.
+     * Then, place them in line.
+     * Finally, make them listen to the selection manager
+     */
     private void ParseChildrenToSelectables()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -140,6 +145,9 @@ public class TargetManager : MonoBehaviour
         }
     }
 
+    /**
+     * Manage the hovering of objects. Called after the targets calculate their correlation with the user's swipe
+     */
     public void ResolveHover(double xThreshHold, double yThreshHold, double averageThreshHold, bool rememberX, bool rememberY, bool rememberAverage)
     {
         int targetID = HighestCorrelationTarget(xThreshHold, yThreshHold, averageThreshHold, rememberX, rememberY, rememberAverage);
@@ -177,6 +185,9 @@ public class TargetManager : MonoBehaviour
         return latest_id;
     }
 
+    /**
+     * Tell the target with the given id to be hovered
+     */
     private void HoverTarget(int targetID)
     {
         if (targetID >= 0 && targetID < selectables.Count)
